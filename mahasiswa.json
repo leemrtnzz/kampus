@@ -381,14 +381,14 @@
       {
           "_id": "65eae56be830de5a8e378979",
           "id": "-",
-          "nama_lengkap": "RT NISWATU W QUDISYAH",
+          "nama_lengkap": "RT NISWATU W QUDSIYAH",
           "gender": "Perempuan",
           "nim": "-",
           "alamat": "-",
           "jurusan": "Sistem Informasi",
           "no_telp": "-",
           "createdAt": "2024-03-08T10:16:11.209Z",
-          "updatedAt": "2024-03-08T10:16:11.209Z",
+          "updatedAt": "2024-03-08T12:37:49.333Z",
           "__v": 0
       },
       {
@@ -441,6 +441,19 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T11:12:13.406Z",
           "updatedAt": "2024-03-08T11:12:13.406Z",
+          "__v": 0
+      },
+      {
+          "_id": "65eb0617e830de5a8e37898a",
+          "id": "-",
+          "nama_lengkap": "NABILA NOVIANA",
+          "gender": "Perempuan",
+          "nim": "-",
+          "alamat": "-",
+          "jurusan": "Sistem Informasi",
+          "no_telp": "-",
+          "createdAt": "2024-03-08T12:35:35.481Z",
+          "updatedAt": "2024-03-08T12:35:35.481Z",
           "__v": 0
       }
   ]

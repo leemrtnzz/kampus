@@ -442,6 +442,19 @@
       "createdAt": "2024-03-08T10:16:45.197Z",
       "updatedAt": "2024-03-08T10:16:45.197Z",
       "__v": 0
+    },
+    {
+      "_id": "65eaf28de830de5a8e378983",
+      "id": "-",
+      "nama_lengkap": "FATUR RAMDAN HIDAYAT",
+      "gender": "Laki-Laki",
+      "nim": "-",
+      "alamat": "-",
+      "jurusan": "Sistem Informasi",
+      "no_telp": "-",
+      "createdAt": "2024-03-08T11:12:13.406Z",
+      "updatedAt": "2024-03-08T11:12:13.406Z",
+      "__v": 0
     }
   ]
 }

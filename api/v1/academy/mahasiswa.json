@@ -210,19 +210,6 @@
           "__v": 0
       },
       {
-          "_id": "65eae4eee830de5a8e37895d",
-          "id": "-",
-          "nama_lengkap": "MUHAMMAD NAZMI SAPUTRA",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:14:06.183Z",
-          "updatedAt": "2024-03-08T10:14:06.183Z",
-          "__v": 0
-      },
-      {
           "_id": "65eae4f5e830de5a8e37895f",
           "id": "-",
           "nama_lengkap": "MUHAMMAD REVALDI",
@@ -246,19 +233,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T10:14:22.107Z",
           "updatedAt": "2024-03-08T10:14:22.107Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae509e830de5a8e378963",
-          "id": "-",
-          "nama_lengkap": "RIFQI RAIHAN NUSA PRATAMA",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:14:33.491Z",
-          "updatedAt": "2024-03-08T10:14:33.491Z",
           "__v": 0
       },
       {
@@ -350,19 +324,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T10:15:36.685Z",
           "updatedAt": "2024-03-08T10:15:36.685Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae55be830de5a8e378975",
-          "id": "-",
-          "nama_lengkap": "RATIH PURWASIH",
-          "gender": "Perempuan",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:15:55.252Z",
-          "updatedAt": "2024-03-08T10:15:55.252Z",
           "__v": 0
       },
       {

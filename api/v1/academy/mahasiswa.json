@@ -132,19 +132,6 @@
           "__v": 0
       },
       {
-          "_id": "65eae4bae830de5a8e378951",
-          "id": "-",
-          "nama_lengkap": "M. TAUFIK QUROHMAN",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:13:14.328Z",
-          "updatedAt": "2024-03-08T10:13:14.328Z",
-          "__v": 0
-      },
-      {
           "_id": "65eae4c2e830de5a8e378953",
           "id": "-",
           "nama_lengkap": "MAIZAN MUHWAHID",
@@ -265,6 +252,18 @@
           "_id": "65eae52ae830de5a8e378969",
           "id": "-",
           "nama_lengkap": "ANIAHTUL KHOLISOH",
+          "gender": "Perempuan",
+          "nim": "-",
+          "alamat": "-",
+          "jurusan": "Sistem Informasi",
+          "no_telp": "-",
+          "createdAt": "2024-03-08T10:15:06.644Z",
+          "updatedAt": "2024-03-08T10:15:06.644Z",
+          "__v": 0
+      },{
+          "_id": "65eae52ae830de5a8e3789697",
+          "id": "-",
+          "nama_lengkap": "RATIH PURWASIH",
           "gender": "Perempuan",
           "nim": "-",
           "alamat": "-",

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelompok Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .group-card {
+            transition: all 0.3s ease;
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-element {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8 animate__animated animate__fadeInDown">
+            Generator Kelompok Mahasiswa
+        </h1>
+
+        <div
+            class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-10 animate__animated animate__fadeIn">
+            <div class="p-8">
+                <div class="mb-6">
+                    <label for="groupCount" class="block text-sm font-medium text-gray-700 mb-2">Jumlah
+                        Kelompok</label>
+                    <input type="number" id="groupCount" min="1" max="32" value="4"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+                </div>
+                <button id="generateBtn"
+                    class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                    Generate Kelompok
+                </button>
+            </div>
+        </div>
+
+        <!-- Ubah container menjadi full width -->
+        <div class="flex justify-center items-center ">
+            <div id="groupsContainer" class="flex justify-center items-center "></div>
+        </div>
+
+        <div id="downloadSection" class="mt-12 text-center hidden animate__animated animate__fadeIn">
+            <button id="downloadBtn"
+                class="bg-green-600 shadow-md text-white px-6 py-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out">
+                <i class="fa fa-photo"></i> Download Gambar
+            </button>
+            <button id="downloadTxtBtn"
+                class="bg-blue-600 shadow-md text-white px-6 py-3 ml-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
+                <i class="fa fa-clipboard"></i> Salin
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentGroups = [];
+        // JSON data of students
+        const studentsData = [{
+            "nim": "231091750026",
+            "nama_mahasiswa": "ACHMAD FAUZI",
+            "alamat_email": "fauzisanan@gmail.com",
+            "no_hp_mahasiswa": "085883397087"
+        },
+        {
+            "nim": "231091750089",
+            "nama_mahasiswa": "AHMAD RIFA'I",
+            "alamat_email": "rifai022006@gmail.com",
+            "no_hp_mahasiswa": "083137328379"
+        },
+        {
+            "nim": "231091750014",
+            "nama_mahasiswa": "ALFAISHAL FARHATULLAH",
+            "alamat_email": "ALFAISHALFARHATULLAH10@GMAIL.COM",
+            "no_hp_mahasiswa": "085280971861"
+        },
+        {
+            "nim": "231091750167",
+            "nama_mahasiswa": "ANIAHTUL KHOLISOH",
+            "alamat_email": "aniahzulkholisoh@gmail.com",
+            "no_hp_mahasiswa": "083829285055"
+        },
+        {
+            "nim": "231091750182",
+            "nama_mahasiswa": "DEDEN NUR HIDAYAT",
+            "alamat_email": "nurdeden889@gmail.com",
+            "no_hp_mahasiswa": "082116635347"
+        },
+        {
+            "nim": "231091750048",
+            "nama_mahasiswa": "DIFA KHAIRUL IMAM",
+            "alamat_email": "khairulimam040919@gmail.com",
+            "no_hp_mahasiswa": "083841416574"
+        },
+        {
+            "nim": "231091750049",
+            "nama_mahasiswa": "FAJRAH SAIDAH MUMINAH",
+            "alamat_email": "fajrahsaidah@gmail.com",
+            "no_hp_mahasiswa": "081384451791"
+        },
+        {
+            "nim": "231091750153",
+            "nama_mahasiswa": "FANISYA EL YANDA",
+            "alamat_email": "fanisyaelyanda07@gmail.com",
+            "no_hp_mahasiswa": "085930143044"
+        },
+        {
+            "nim": "231091750166",
+            "nama_mahasiswa": "FARIHAH",
+            "alamat_email": "frhhaprlya@gmail.com",
+            "no_hp_mahasiswa": "085691889869"
+        },
+        {
+            "nim": "231091750091",
+            "nama_mahasiswa": "FATUR RAMDAN HIDAYAT",
+            "alamat_email": "faturh24@gmail.com",
+            "no_hp_mahasiswa": "085280011714"
+        },
+        {
+            "nim": "231091750064",
+            "nama_mahasiswa": "ILHAM ADI WICAKSONO",
+            "alamat_email": "ILHAMADIWICAKSONO@GMAIL.COM",
+            "no_hp_mahasiswa": "08882491590"
+        },
+        {
+            "nim": "231091750021",
+            "nama_mahasiswa": "IRGHI AHMAD HAWARI",
+            "alamat_email": "hawakiirghi@gmail.com",
+            "no_hp_mahasiswa": "082128929968"
+        },
+        {
+            "nim": "231091750112",
+            "nama_mahasiswa": "JOSHUA PHILIP RAJAGUKGUK",
+            "alamat_email": "ijoyy933@gmail.com",
+            "no_hp_mahasiswa": "081211811373"
+        },
+        {
+            "nim": "231091750109",
+            "nama_mahasiswa": "LINGGI",
+            "alamat_email": "linggiabdijaya@gmail.com",
+            "no_hp_mahasiswa": "082124636713"
+        },
+        {
+            "nim": "231091750041",
+            "nama_mahasiswa": "MAIZAN MUHWAHID",
+            "alamat_email": "muhwahidmaizan@gmail.com",
+            "no_hp_mahasiswa": "081213181962"
+        },
+        {
+            "nim": "231091750078",
+            "nama_mahasiswa": "MUHAMAD I'AM",
+            "alamat_email": "dahucity55@gmail.com",
+            "no_hp_mahasiswa": "083872343993"
+        },
+        {
+            "nim": "231091750156",
+            "nama_mahasiswa": "MUHAMMAD ANDI KUSUMA",
+            "alamat_email": "andim5497@gmail.com",
+            "no_hp_mahasiswa": "085383707458"
+        },
+        {
+            "nim": "231091750027",
+            "nama_mahasiswa": "MUHAMMAD ICHSAN HAEKAL",
+            "alamat_email": "ichsan.haekal23@gmail.com",
+            "no_hp_mahasiswa": "083841365567"
+        },
+        {
+            "nim": "231091750047",
+            "nama_mahasiswa": "MUHAMMAD IHSAN ALFARIZI",
+            "alamat_email": "muhammadihsan@gmail.com",
+            "no_hp_mahasiswa": "085772766048"
+        },
+        {
+            "nim": "231091750061",
+            "nama_mahasiswa": "MUHAMMAD MUFLIH ABDUL JABBAR",
+            "alamat_email": "MUFLIHJABBAR27@GMAIL.COM",
+            "no_hp_mahasiswa": "087875986120"
+        },
+        {
+            "nim": "231091750191",
+            "nama_mahasiswa": "MUHAMMAD REVALDI",
+            "alamat_email": "muhamadrevaldi0512@gmail.com",
+            "no_hp_mahasiswa": "083895707942"
+        },
+        {
+            "nim": "231091750039",
+            "nama_mahasiswa": "MUHAMMAD TAUFIQ IMANSYAH",
+            "alamat_email": "taufikimansyah020@gmail.com",
+            "no_hp_mahasiswa": "0895383215139"
+        },
+        {
+            "nim": "231091750046",
+            "nama_mahasiswa": "NABILA HUSNA AULIA",
+            "alamat_email": "nabilahusnaaulai1145@gmail.com",
+            "no_hp_mahasiswa": "083812344495"
+        },
+        {
+            "nim": "231091750131",
+            "nama_mahasiswa": "NABILA NOVIANA",
+            "alamat_email": "NABILANOVIANA42@GMAIL.COM",
+            "no_hp_mahasiswa": "085216163841"
+        },
+        {
+            "nim": "231091750132",
+            "nama_mahasiswa": "RATIH PURWASIH",
+            "alamat_email": "ratihpur29@gmail.com",
+            "no_hp_mahasiswa": "082123373576"
+        },
+        {
+            "nim": "231091750057",
+            "nama_mahasiswa": "RISNA NURUL OCTAVANI",
+            "alamat_email": "risnaoctavani@gmail.com",
+            "no_hp_mahasiswa": "081282433803"
+        },
+        {
+            "nim": "231091750035",
+            "nama_mahasiswa": "RT NISWATU W QUDSIYAH",
+            "alamat_email": "niswahwqudsiyah@gmail.com",
+            "no_hp_mahasiswa": "083873818757"
+        },
+        {
+            "nim": "231091750022",
+            "nama_mahasiswa": "SAEPUDIN",
+            "alamat_email": "saefudin967@gmail.com",
+            "no_hp_mahasiswa": "085773910665"
+        },
+        {
+            "nim": "231091750090",
+            "nama_mahasiswa": "SILVIA NURUL HASANAH",
+            "alamat_email": "silviahasanah83@gmail.com",
+            "no_hp_mahasiswa": "083127377511"
+        },
+        {
+            "nim": "231091750056",
+            "nama_mahasiswa": "UUT ULIYATI DEWI",
+            "alamat_email": "UUTULIYATIDEWI35@GMAIL.COM",
+            "no_hp_mahasiswa": "089522959650"
+        },
+        {
+            "nim": "231091750129",
+            "nama_mahasiswa": "VANIA DENTY OKTORA",
+            "alamat_email": "vaniadentyoktora@gmail.com",
+            "no_hp_mahasiswa": "082214031503"
+        },
+        {
+            "nim": "231091750070",
+            "nama_mahasiswa": "WAHYU PRATAMA RAMADHAN",
+            "alamat_email": "wahyupratama022906@gmail.com",
+            "no_hp_mahasiswa": "089638617548"
+        }
+        ];
+
+        // Fungsi untuk mengacak array
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Fungsi untuk generate kelompok
+        function generateGroups() {
+            const groupCount = parseInt(document.getElementById('groupCount').value);
+            if (groupCount < 3 || groupCount > studentsData.length) {
+                alert('Jumlah kelompok tidak valid atau terlalu sedikit!');
+                return;
+            }
+
+            const shuffledStudents = shuffleArray(studentsData);
+            const groups = Array.from({
+                length: groupCount
+            }, () => []);
+
+            // Distribusikan mahasiswa ke tiap kelompok
+            shuffledStudents.forEach((student, index) => {
+                const groupIndex = index % groupCount;
+                groups[groupIndex].push(student);
+            });
+            currentGroups = groups;
+            displayGroups(groups);
+        }
+
+        // Fungsi untuk menampilkan semua kelompok dalam 1 card full-width
+        function displayGroups(groups) {
+            const container = document.getElementById('groupsContainer');
+            container.innerHTML = '';
+
+            // Buat 1 card utama dengan w-full
+            const singleCard = document.createElement('div');
+            singleCard.className =
+                'lg:w-3/5 flex flex-wrap group-card bg-white rounded-xl shadow-md overflow-hidden';
+            singleCard.style.opacity = '1'; // Pastikan opacity penuh untuk download
+
+            // Container dalam card dengan spacing antar kelompok (space-y-6)
+            let cardContent = `<div class="p-6 gap-6 flex flex-wrap">`;
+
+            groups.forEach((group, index) => {
+                cardContent += `
+          <div class="group-section">
+            <h2 class="text-xl font-bold text-indigo-600 mb-4">Kelompok ${index + 1}</h2>
+            <ul class="space-y-3">
+        `;
+                group.forEach(student => {
+                    cardContent += `
+              <li class="flex items-start">
+                <div class="flex-shrink-0">
+                  <span class="inline-block h-8 w-8 rounded-full bg-indigo-100 text-indigo-500 flex items-center justify-center font-semibold">
+                    ${student.nama_mahasiswa.charAt(0)}
+                  </span>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-800">${student.nama_mahasiswa}</p>
+                  <p class="text-xs text-gray-500">${student.nim}</p>
+                </div>
+              </li>
+          `;
+                });
+                cardContent += `
+            </ul>
+          </div>
+        `;
+            });
+
+            cardContent += `</div>`;
+            singleCard.innerHTML = cardContent;
+            container.appendChild(singleCard);
+
+            // Terapkan animasi fade-in
+            setTimeout(() => {
+                singleCard.classList.add('fade-in-element');
+            }, 10);
+
+            document.getElementById('downloadSection').classList.remove('hidden');
+        }
+
+        // Fungsi untuk mendownload tampilan sebagai gambar
+        function downloadAsImage() {
+            const element = document.getElementById('groupsContainer');
+
+            // Pastikan semua card terlihat penuh
+            const cards = element.querySelectorAll('.group-card');
+            cards.forEach(card => {
+                card.dataset.originalClasses = card.className;
+                card.style.opacity = '1';
+                card.style.transform = 'none';
+            });
+
+            const options = {
+                backgroundColor: '#f9fafb',
+                scale: 2,
+                useCORS: true,
+                logging: false
+            };
+
+            html2canvas(element, options).then(canvas => {
+                cards.forEach(card => {
+                    card.className = card.dataset.originalClasses;
+                    card.removeAttribute('style');
+                });
+
+                const a = document.createElement('a');
+                a.href = canvas.toDataURL('image/png');
+                a.download = 'kelompok-mahasiswa.png';
+                a.click();
+            });
+        }
+        function downloadAsTxt() {
+            if (!currentGroups || currentGroups.length === 0) {
+                alert('Silakan generate kelompok terlebih dahulu!');
+                return;
+            }
+
+            let textContent = '';
+            currentGroups.forEach((group, index) => {
+                textContent += `Kelompok ${index + 1}:\n`;
+                group.forEach(student => {
+                    textContent += `- ${student.nama_mahasiswa} (${student.nim})\n`;
+                });
+                textContent += '\n';
+            });
+
+            navigator.clipboard.writeText(textContent).then(() => {
+                alert('Teks berhasil disalin ke clipboard!');
+            }).catch(err => {
+                alert('Gagal menyalin teks: ' + err);
+            });
+        }
+
+        // Event listeners
+        document.getElementById('generateBtn').addEventListener('click', generateGroups);
+        document.getElementById('downloadBtn').addEventListener('click', downloadAsImage);
+        document.getElementById('downloadTxtBtn').addEventListener('click', downloadAsTxt);
+    </script>
+</body>
+
+</html>

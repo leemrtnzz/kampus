@@ -18,20 +18,40 @@
     </script>
 </head>
 <style>
-    .typewriter {
-        overflow: hidden;
-        /* Jangan tampilkan teks yang melebihi batas */
-        border-right: 2px solid orange;
-        /* Kursor typewriter */
-        white-space: nowrap;
-        /* Teks tetap dalam satu baris */
-        margin: auto;
-        /* Memusatkan teks */
-        letter-spacing: .15em;
-        /* Jarak antar huruf */
-        max-width: 430px;
-        /* Batasi lebar maksimum teks */
-        animation: typing 3.5s steps(100, end), blink-caret .30s step-end infinite;
+    @media (min-width: 360px) {
+        .typewriter {
+            overflow: hidden;
+            /* Jangan tampilkan teks yang melebihi batas */
+            border-right: 2px solid orange;
+            /* Kursor typewriter */
+            white-space: nowrap;
+            /* Teks tetap dalam satu baris */
+            margin: auto;
+            /* Memusatkan teks */
+            letter-spacing: .15em;
+            /* Jarak antar huruf */
+            max-width: 280px;
+            /* Batasi lebar maksimum teks */
+            animation: typing 3.5s steps(100, end), blink-caret .30s step-end infinite;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .typewriter {
+            overflow: hidden;
+            /* Jangan tampilkan teks yang melebihi batas */
+            border-right: 2px solid orange;
+            /* Kursor typewriter */
+            white-space: nowrap;
+            /* Teks tetap dalam satu baris */
+            margin: auto;
+            /* Memusatkan teks */
+            letter-spacing: .15em;
+            /* Jarak antar huruf */
+            max-width: 430px;
+            /* Batasi lebar maksimum teks */
+            animation: typing 3.5s steps(100, end), blink-caret .30s step-end infinite;
+        }
     }
 
     @keyframes typing {
@@ -73,7 +93,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/id/6/62/UNPAM_logo1.png" alt="" width="200"
                 class="mx-auto animate__animated animate__fadeInDown">
             <h1
-                class="text-gray-500 dark:text-gray-100 font-semibold text-4xl animate__animated animate__fadeInDown uppercase typewriter">
+                class="text-gray-500 dark:text-gray-100 font-semibold text-2xl lg:text-4xl animate__animated animate__fadeInDown uppercase typewriter">
                 Sistem Informasi
             </h1>
             <p

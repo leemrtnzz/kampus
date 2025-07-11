@@ -55,9 +55,10 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
 
   const tanggal = `${hari}-${bulan}-${tahun}`;
 
-  const pesan = `📄 Invoice: *${invoice}*\n📅 Tanggal: *${tanggal}*\n🙍 Nama: *${nama}*\n📦 Produk: *${produk}*\n\nHai kak, aku mau pesan!`;
+  const pesan = `📄 Invoice: *${invoice}*\n📅 Tanggal: *${tanggal}*\n🙋‍♂️ Nama: *${nama}*\n📦 Produk: *${produk}*\n\n👋 Hai kak, aku mau pesan!`;
 
   const link = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+
 
   window.location.href = link;
 });

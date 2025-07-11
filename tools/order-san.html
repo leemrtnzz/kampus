@@ -4,30 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<title>WA Link Generator</title>
+<title>WA Order</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
 <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
-  <h1 class="text-xl font-bold mb-4">💬 WhatsApp Link Generator</h1>
+  <h1 class="text-xl font-bold mb-4">WhatsApp Order</h1>
 
   <form id="waForm" class="space-y-4">
     <div>
-      <label class="block text-sm font-medium text-gray-700">🙍 Nama</label>
+      <label class="block text-sm font-medium text-gray-700">Nama</label>
       <input type="text" id="nama" placeholder="Nama Anda" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
     </div>
 
-    <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-      🚀 Pesan
-    </button>
+    <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buat Pesanan</button>
   </form>
+
+  <div id="result" class="mt-4 hidden flex flex-col">
+    <a href="#" target="_blank" id="waLink" class="text-blue-600 break-words"></a>
+	
+  </div>
 </div>
 
 <script>
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name) || '-';
+  return urlParams.get(name) || '';
 }
 
 document.getElementById('waForm').addEventListener('submit', function(e) {
@@ -35,7 +38,7 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
 
   const nomor = '6283841365567';
   const nama = document.getElementById('nama').value.trim();
-  const produk = getQueryParam('product');
+  const produk = getQueryParam('product') || '-';
 
   if (!nama) {
     Swal.fire({
@@ -46,6 +49,8 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
     return;
   }
 
+
+
   const now = new Date();
   const tahun = now.getFullYear();
   const bulan = String(now.getMonth() + 1).padStart(2, '0');
@@ -55,13 +60,18 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
 
   const tanggal = `${hari}-${bulan}-${tahun}`;
 
-  const pesan = `📄 Invoice: *${invoice}*\n📅 Tanggal: *${tanggal}*\n🙋‍♂️ Nama: *${nama}*\n📦 Produk: *${produk}*\n\n👋 Hai kak, aku mau pesan!`;
+  const pesan = `📄 Invoice: ${invoice}\n📅 Tanggal: ${tanggal}\n🙍 Nama: ${nama}\n📦 Produk: ${produk}\n\n`;
 
   const link = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
 
+  const resultDiv = document.getElementById('result');
+  setTimeout(() => {
+                window.location.href = link
 
-  window.location.href = link;
+            }, 100)
+  resultDiv.classList.remove('hidden');
 });
+
 </script>
 
 </body>

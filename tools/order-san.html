@@ -55,7 +55,7 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
 
   const tanggal = `${hari}-${bulan}-${tahun}`;
 
-  const pesan = `Invoice: ${invoice}\nTanggal: ${tanggal}\nNama: ${nama}\nProduk: ${produk}\n\n Hai kak, aku mau pesan!`;
+  const pesan = `Invoice: ${invoice}\nTanggal: ${tanggal}\nNama: ${nama}\nProduk: ${produk}\n\nHai kak, aku mau pesan!`;
 
   const link = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
   setTimeout(() => {

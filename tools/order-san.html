@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<title>WA Order</title>
+<title>WA Link Generator</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
 <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
-  <h1 class="text-xl font-bold mb-4">WhatsApp Order</h1>
+  <h1 class="text-xl font-bold mb-4">WhatsApp Link Generator</h1>
 
   <form id="waForm" class="space-y-4">
     <div>
@@ -22,8 +22,9 @@
   </form>
 
   <div id="result" class="mt-4 hidden flex flex-col">
-    <a href="#" target="_blank" id="waLink" class="text-blue-600 break-words"></a>
-	
+  <p class="text-sm text-gray-700">Klik tombol dibawah untuk memesan</p>
+	<a href="#" target="_blank" id="buttonWaLink" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-center">Pesan</a>
+
   </div>
 </div>
 
@@ -60,15 +61,13 @@ document.getElementById('waForm').addEventListener('submit', function(e) {
 
   const tanggal = `${hari}-${bulan}-${tahun}`;
 
-  const pesan = `📄 Invoice: ${invoice}\n📅 Tanggal: ${tanggal}\n🙍 Nama: ${nama}\n📦 Produk: ${produk}\n\n`;
+  const pesan = `📄 Invoice: ${invoice}\n📅 Tanggal: ${tanggal}\n🙍 Nama: ${nama}\n📦 Produk: ${produk}\n\n👋 Hai kak, aku mau pesan!`;
 
   const link = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
 
   const resultDiv = document.getElementById('result');
-  setTimeout(() => {
-                window.location.href = link
-
-            }, 100)
+  const buttonWaLink = document.getElementById('buttonWaLink');
+  buttonWaLink.href = link;
   resultDiv.classList.remove('hidden');
 });
 

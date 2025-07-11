@@ -81,7 +81,7 @@ if (!pesanInput) {
   const random = Math.floor(100 + Math.random() * 900);
   const invoice = `${tahun}${bulan}${hari}${random}`;
 
-  const pesan = `Order: ${invoice}\nNama: \n\nPesan: ${pesanInput}`;
+  const pesan = `Nama: \n\n${pesanInput}`;
 
   const link = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
 

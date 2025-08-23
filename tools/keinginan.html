@@ -1,1 +1,316 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checklist Kebutuhan vs Keinginan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+  <main class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl">
+      <!-- Kartu -->
+      <section class="bg-white rounded-2xl shadow border border-slate-200 overflow-hidden">
+        <header class="p-5 md:p-6 border-b border-slate-200">
+          <h1 class="text-xl md:text-2xl font-bold">Checklist Kebutuhan vs Keinginan</h1>
+          <p class="mt-1 text-sm text-slate-600">
+            Jawab setiap pertanyaan. Sistem akan menilai otomatis apakah belanjaanmu termasuk
+            <span class="font-semibold">Kebutuhan</span> atau <span class="font-semibold">Keinginan/Lapar Mata</span>.
+          </p>
+        </header>
+
+        <div class="p-5 md:p-6 space-y-6">
+          <!-- Progress -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-slate-700">Skor “YA”</span>
+              <span id="scoreLabel" class="text-sm font-semibold">0 / 6</span>
+            </div>
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div id="scoreBar" class="h-2 bg-emerald-500 w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Optional: Harga -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Harga (opsional)</span>
+              <input id="price" type="number" min="0" inputmode="numeric" placeholder="mis. 100000"
+                     class="mt-1 w-full rounded-lg border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Catatan singkat (opsional)</span>
+              <input id="note" type="text" placeholder="mis. sepatu kerja"
+                     class="mt-1 w-full rounded-lg border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" />
+            </label>
+          </div>
+
+          <!-- Pertanyaan -->
+          <form id="checklist" class="space-y-4">
+            <!-- Template pertanyaan: gunakan radio YA/TIDAK -->
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="1">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                1) Apakah ini mendesak untuk hidup sehari-hari? (makan, transport, kesehatan)
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q1" value="yes" class="text-emerald-600" /> YA
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q1" value="no" class="text-emerald-600" /> TIDAK
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="2">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                2) Jika tidak dibeli sekarang, akan timbul masalah besar? (tagihan, obat, bensin)
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q2" value="yes" class="text-emerald-600" /> YA
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q2" value="no" class="text-emerald-600" /> TIDAK
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="3">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                3) Dipakai sering, bukan sekali-sekali? (utilitas, alat kerja, sepatu kerja)
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q3" value="yes" class="text-emerald-600" /> YA
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q3" value="no" class="text-emerald-600" /> TIDAK
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="4">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                4) Sudah ada di rencana/budget periode ini?
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q4" value="yes" class="text-emerald-600" /> YA
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q4" value="no" class="text-emerald-600" /> TIDAK
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="5">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                5) Bisa ditunda tanpa mengganggu apa pun?
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q5" value="no" class="text-emerald-600" /> YA (bisa ditunda)
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q5" value="yes" class="text-emerald-600" /> TIDAK (tidak bisa ditunda)
+                </label>
+              </div>
+              <p class="mt-1 text-xs text-slate-500">
+                *Catatan: di sini “YA (bisa ditunda)” bernilai 0 karena cenderung ke keinginan.
+              </p>
+            </fieldset>
+
+            <fieldset class="p-4 rounded-xl border border-slate-200" data-question="6">
+              <legend class="px-2 text-sm font-semibold text-slate-800">
+                6) Manfaatnya lebih lama daripada senang sesaat?
+              </legend>
+              <div class="mt-2 flex gap-4">
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q6" value="yes" class="text-emerald-600" /> YA
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="radio" name="q6" value="no" class="text-emerald-600" /> TIDAK
+                </label>
+              </div>
+            </fieldset>
+          </form>
+
+          <!-- Hasil -->
+          <div id="result" class="rounded-xl border border-slate-200 p-4">
+            <p class="text-sm text-slate-600">Hasil akan muncul di sini setelah kamu menjawab.</p>
+          </div>
+
+          <!-- Aksi -->
+          <div class="flex flex-wrap gap-3">
+            <button id="copyBtn" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 active:scale-95">
+              Salin Ringkasan
+            </button>
+            <button id="resetBtn" class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 active:scale-95">
+              Reset Jawaban
+            </button>
+          </div>
+
+          <p class="text-xs text-slate-500">
+            Tip: tanya diri sendiri → <span class="italic">“Kalau tidak beli ini, apakah target nikah 100jt jadi lebih cepat?”</span>
+          </p>
+        </div>
+      </section>
+
+      <footer class="text-center text-xs text-slate-500 mt-4">
+        © Checklist sederhana — bantu kontrol belanja & jaga tujuan besar.
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // ------- Util -------
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+    const scoreLabel = $("#scoreLabel");
+    const scoreBar = $("#scoreBar");
+    const resultBox = $("#result");
+    const priceInput = $("#price");
+    const noteInput = $("#note");
+    const copyBtn = $("#copyBtn");
+    const resetBtn = $("#resetBtn");
+    const form = $("#checklist");
+
+    const LS_KEY = "checklist-kvs-answers-v1";
+
+    // Hitung skor "YA"
+    function computeScore() {
+      let score = 0;
+      for (let i = 1; i <= 6; i++) {
+        const val = (form.elements["q" + i]?.value) || "";
+        if (val === "yes") score++;
+      }
+      return score;
+    }
+
+    function classify(score) {
+      if (score >= 4) {
+        return {
+          label: "Kebutuhan",
+          colorClass: "bg-emerald-50 border-emerald-200 text-emerald-800",
+          advice: "Boleh dibeli sesuai rencana. Cek harga terbaik & pastikan ada di budget. Jika belum, update budget dulu."
+        };
+      } else if (score <= 2) {
+        return {
+          label: "Keinginan / Lapar Mata",
+          colorClass: "bg-rose-50 border-rose-200 text-rose-800",
+          advice: "Tahan dulu. Pakai pos jajan kalau memang ada. Jika tidak, jangan beli. Terapkan aturan tunda 24 jam."
+        };
+      } else {
+        return {
+          label: "Dipertimbangkan",
+          colorClass: "bg-amber-50 border-amber-200 text-amber-900",
+          advice: "Tunda 24 jam, cari alternatif lebih murah, atau masukkan ke budget periode berikutnya."
+        };
+      }
+    }
+
+    function updateUI() {
+      const score = computeScore();
+      scoreLabel.textContent = `${score} / 6`;
+      scoreBar.style.width = `${(score / 6) * 100}%`;
+
+      const { label, colorClass, advice } = classify(score);
+
+      // Bangun ringkasan
+      const price = priceInput.value ? Number(priceInput.value) : null;
+      const note = (noteInput.value || "").trim();
+
+      const priceStr = price ? new Intl.NumberFormat("id-ID").format(price) : null;
+      const now = new Date();
+      const dateStr = now.toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+
+      const summaryLines = [
+        `Tanggal: ${dateStr}`,
+        note ? `Item: ${note}` : null,
+        priceStr ? `Harga: Rp ${priceStr}` : null,
+        `Skor YA: ${score} / 6`,
+        `Klasifikasi: ${label}`,
+        `Saran: ${advice}`
+      ].filter(Boolean);
+
+      resultBox.className = "rounded-xl border p-4 mt-2 " + colorClass;
+      resultBox.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 mt-0.5">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border">
+              ${label === "Kebutuhan" ? "✅" : label === "Dipertimbangkan" ? "⏳" : "⚠️"}
+            </span>
+          </div>
+          <div>
+            <p class="text-sm"><span class="font-semibold">Klasifikasi:</span> ${label}</p>
+            <p class="text-sm mt-1"><span class="font-semibold">Saran:</span> ${advice}</p>
+            <p class="text-xs text-slate-500 mt-2">${summaryLines.join(" · ")}</p>
+          </div>
+        </div>
+      `;
+
+      // Simpan jawaban ke localStorage
+      const answers = {};
+      for (let i = 1; i <= 6; i++) {
+        answers["q" + i] = form.elements["q" + i]?.value || "";
+      }
+      answers.price = priceInput.value || "";
+      answers.note = noteInput.value || "";
+      localStorage.setItem(LS_KEY, JSON.stringify(answers));
+
+      // Kembalikan ringkasan (untuk copy)
+      return summaryLines.join("\n");
+    }
+
+    // Event: perubahan jawaban
+    form.addEventListener("change", updateUI);
+    priceInput.addEventListener("input", updateUI);
+    noteInput.addEventListener("input", updateUI);
+
+    // Copy ringkasan
+    copyBtn.addEventListener("click", async () => {
+      const text = updateUI();
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = "Tersalin ✓";
+        setTimeout(() => (copyBtn.textContent = "Salin Ringkasan"), 1200);
+      } catch {
+        alert("Gagal menyalin. Silakan salin manual.");
+      }
+    });
+
+    // Reset
+    resetBtn.addEventListener("click", () => {
+      for (let i = 1; i <= 6; i++) {
+        const radios = $$(`input[name="q${i}"]`);
+        radios.forEach(r => (r.checked = false));
+      }
+      priceInput.value = "";
+      noteInput.value = "";
+      localStorage.removeItem(LS_KEY);
+      updateUI();
+    });
+
+    // Restore dari localStorage
+    (function restore() {
+      const saved = localStorage.getItem(LS_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+        for (let i = 1; i <= 6; i++) {
+          const val = data["q" + i];
+          if (val) {
+            const radio = form.querySelector(`input[name="q${i}"][value="${val}"]`);
+            if (radio) radio.checked = true;
+          }
+        }
+        if (data.price) priceInput.value = data.price;
+        if (data.note) noteInput.value = data.note;
+      }
+      updateUI();
+    })();
+  </script>
+</body>
+</html>

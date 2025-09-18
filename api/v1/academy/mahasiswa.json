@@ -54,32 +54,6 @@
           "__v": 0
       },
       {
-          "_id": "65eae47de830de5a8e378945",
-          "id": "-",
-          "nama_lengkap": "DEDEN NUR HIDAYAT",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:12:13.412Z",
-          "updatedAt": "2024-03-08T10:12:13.412Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae487e830de5a8e378947",
-          "id": "-",
-          "nama_lengkap": "DIFA KHAIRUL IMAM",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:12:23.856Z",
-          "updatedAt": "2024-03-08T10:12:23.856Z",
-          "__v": 0
-      },
-      {
           "_id": "65eae49be830de5a8e378949",
           "id": "-",
           "nama_lengkap": "ILHAM ADI WICAKSONO",
@@ -90,32 +64,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T10:12:43.075Z",
           "updatedAt": "2024-03-08T10:12:43.075Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae4a3e830de5a8e37894b",
-          "id": "-",
-          "nama_lengkap": "IRGI AHMAD HAWARI",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:12:51.710Z",
-          "updatedAt": "2024-03-08T10:12:51.710Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae4abe830de5a8e37894d",
-          "id": "-",
-          "nama_lengkap": "JOSHUA PHILIP RAJAGUKGUK",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:12:59.482Z",
-          "updatedAt": "2024-03-08T10:12:59.482Z",
           "__v": 0
       },
       {
@@ -171,19 +119,6 @@
           "__v": 0
       },
       {
-          "_id": "65eae4dde830de5a8e378959",
-          "id": "-",
-          "nama_lengkap": "MUHAMMAD IHSAN ALFARIZI",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:13:49.439Z",
-          "updatedAt": "2024-03-08T10:13:49.439Z",
-          "__v": 0
-      },
-      {
           "_id": "65eae4e5e830de5a8e37895b",
           "id": "-",
           "nama_lengkap": "MUHAMMAD MUFLIH ABDUL JABBAR",
@@ -220,32 +155,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T10:14:22.107Z",
           "updatedAt": "2024-03-08T10:14:22.107Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae513e830de5a8e378965",
-          "id": "-",
-          "nama_lengkap": "SAEPUDIN",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:14:43.445Z",
-          "updatedAt": "2024-03-08T10:14:43.445Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae51be830de5a8e378967",
-          "id": "-",
-          "nama_lengkap": "WAHYU PRATAMA RAMADHAN",
-          "gender": "Laki-Laki",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:14:51.006Z",
-          "updatedAt": "2024-03-08T10:14:51.006Z",
           "__v": 0
       },
       {
@@ -297,19 +206,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T10:15:21.667Z",
           "updatedAt": "2024-03-08T10:15:21.667Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eae540e830de5a8e37896f",
-          "id": "-",
-          "nama_lengkap": "FARIHAH",
-          "gender": "Perempuan",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T10:15:28.275Z",
-          "updatedAt": "2024-03-08T10:15:28.275Z",
           "__v": 0
       },
       {
@@ -401,19 +297,6 @@
           "no_telp": "-",
           "createdAt": "2024-03-08T11:12:13.406Z",
           "updatedAt": "2024-03-08T11:12:13.406Z",
-          "__v": 0
-      },
-      {
-          "_id": "65eb0617e830de5a8e37898a",
-          "id": "-",
-          "nama_lengkap": "NABILA NOVIANA",
-          "gender": "Perempuan",
-          "nim": "-",
-          "alamat": "-",
-          "jurusan": "Sistem Informasi",
-          "no_telp": "-",
-          "createdAt": "2024-03-08T12:35:35.481Z",
-          "updatedAt": "2024-03-08T12:35:35.481Z",
           "__v": 0
       }
   ]

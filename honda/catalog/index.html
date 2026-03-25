@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Suku Cadang Honda Cengkareng</title>
+    <title>Katalog Suku Cadang Honda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -12,7 +12,7 @@
     <header class="bg-red-600 text-white py-10 shadow-lg">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-4xl font-bold mb-2">Katalog Suku Cadang Honda</h1>
-            <p class="opacity-90">Temukan suku cadang resmi berdasarkan tipe dan kode motor Anda</p>
+            <p class="opacity-90">Cari part, lihat katalog online, atau download PDF</p>
         </div>
     </header>
 
@@ -27,7 +27,7 @@
                         class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm" 
                         placeholder="Cari motor atau kode (contoh: Vario, K81, PCX)...">
                 </div>
-                <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 whitespace-nowrap">
                     <button onclick="filterCategory('all')" class="cat-btn active px-5 py-2 rounded-full text-sm font-medium bg-red-600 text-white">Semua</button>
                     <button onclick="filterCategory('Bebek')" class="cat-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Bebek</button>
                     <button onclick="filterCategory('Matic')" class="cat-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Matic</button>
@@ -45,39 +45,50 @@
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container mx-auto px-4 text-center text-sm opacity-70">
-            &copy; 2026 Katalog Part Honda. Data bersumber dari Honda Cengkareng.
-        </div>
-    </footer>
-
     <script>
-        // Data hasil ekstraksi dari HTML mentah Anda
+        // Data Katalog (Contoh yang sudah dilengkapi link PDF & Online)
         const motors = [
             // BEBEK
-            { name: "Honda WIN", code: "GF6", year: "1984 – 2005", cat: "Bebek" },
-            { name: "Honda Grand", code: "GN5", year: "1991 – 1998", cat: "Bebek" },
-            { name: "Honda Karisma", code: "KPH", year: "2002 – 2005", cat: "Bebek" },
-            { name: "Honda Revo FI", code: "K03", year: "2014 – Sekarang", cat: "Bebek" },
-            { name: "Honda Supra X 125 FI", code: "K41", year: "2014 – Sekarang", cat: "Bebek" },
-            { name: "Honda CT125 Hunter Cub", code: "K2E", year: "2020 – Sekarang", cat: "Bebek" },
+            { 
+                name: "Honda WIN", code: "GF6", year: "1984 – 2005", cat: "Bebek",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2016/02/Katalog-Suku-Cadang-Honda-WIN.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-win-gf6/"
+            },
+            { 
+                name: "Honda Supra X 125 FI", code: "K41", year: "Feb 2014 – Sekarang", cat: "Bebek",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2022/04/Katalog-Suku-Cadang-SUPRA-X-125.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-supra-x-125-fi-k41/"
+            },
+            
             // MATIC
-            { name: "Honda BeAT", code: "KVY", year: "2008 – 2012", cat: "Matic" },
-            { name: "Honda BeAT eSP", code: "K81", year: "2016 – 2019", cat: "Matic" },
-            { name: "Honda New BeAT K1AL", code: "K1AL", year: "2024 – Sekarang", cat: "Matic" },
-            { name: "Honda Genio", code: "K0JN", year: "2022 – 2025", cat: "Matic" },
-            { name: "Honda Vario 125", code: "K2VB", year: "2025 – Sekarang", cat: "Matic" },
-            { name: "Honda Vario 160", code: "K2S", year: "2022 – Sekarang", cat: "Matic" },
-            { name: "Honda PCX 160", code: "K1Z", year: "2021 – 2024", cat: "Matic" },
-            { name: "Honda ADV 160", code: "K0WL", year: "2022 – Sekarang", cat: "Matic" },
-            { name: "Honda Stylo 160", code: "K3V", year: "2024 – Sekarang", cat: "Matic" },
+            { 
+                name: "Honda BeAT eSP", code: "K81", year: "Ags 2016 – 2019", cat: "Matic",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2021/07/Katalog-Motor-BeAT-eSP-K81.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-beat-esp-k81/"
+            },
+            { 
+                name: "Honda Vario 160", code: "K2S", year: "Feb 2022 – Sekarang", cat: "Matic",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2022/02/Katalog-Suku-Cadang-Honda-Vario-160.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-vario-160-2/"
+            },
+            { 
+                name: "Honda PCX 160", code: "K1Z", year: "Feb 2021 – 2024", cat: "Matic",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2021/03/Katalog-Suku-Cadang-Honda-PCX-160-PCX-eHEV.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-pcx-160/"
+            },
+            
             // SPORT
-            { name: "Honda Sonic 150R", code: "K56", year: "2015 – Sekarang", cat: "Sport" },
-            { name: "Honda CB150R StreetFire", code: "K15P", year: "2021 – Sekarang", cat: "Sport" },
-            { name: "Honda CBR 150R", code: "K45R", year: "2021 – Sekarang", cat: "Sport" },
-            { name: "Honda CBR 250RR", code: "K64N", year: "2022 – Sekarang", cat: "Sport" },
-            { name: "Honda CB150X", code: "K3BA", year: "2021 – Sekarang", cat: "Sport" },
-            { name: "Honda CRF 150L", code: "K84F", year: "2018 – Sekarang", cat: "Sport" }
+            { 
+                name: "Honda CBR 150R", code: "K45R", year: "Jan 2021 – Sekarang", cat: "Sport",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2021/01/Katalog-Suku-Cadang-Honda-New-CBR150R-K45M.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-new-cbr-150r-k45r/"
+            },
+            { 
+                name: "Honda CRF 150L", code: "K84F", year: "Sep 2018 – Sekarang", cat: "Sport",
+                pdf: "https://www.hondacengkareng.com/wp-content/uploads/2021/06/Katalog-Suku-Cadang-Honda-CRF150L-K84F.pdf",
+                online: "https://www.hondacengkareng.com/catalogs/katalog-suku-cadang-honda-crf-150l-k84f/"
+            }
+            // Tambahkan sisa data motor di sini dengan format yang sama: name, code, year, cat, pdf, online
         ];
 
         let currentCat = 'all';
@@ -94,20 +105,31 @@
             });
 
             grid.innerHTML = filtered.map(m => `
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group">
-                    <div class="p-5">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group flex flex-col">
+                    <div class="p-5 flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-4">
                             <span class="text-xs font-bold uppercase tracking-wider text-red-500">${m.cat}</span>
-                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2 py-1 rounded">${m.code}</span>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2 py-1 rounded border border-gray-200">${m.code || '-'}</span>
                         </div>
                         <h3 class="font-bold text-lg text-gray-800 mb-1 group-hover:text-red-600 transition-colors">${m.name}</h3>
-                        <p class="text-gray-500 text-xs mb-6"><i class="far fa-calendar-alt mr-1"></i> ${m.year}</p>
+                        <p class="text-gray-500 text-xs mb-4"><i class="far fa-calendar-alt mr-1"></i> ${m.year || 'Tahun tidak tersedia'}</p>
                         
-                        <div class="space-y-2">
+                        <div class="mt-auto space-y-2">
                             <button onclick="redirectToHonda('${m.code}')" 
                                 class="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <i class="fas fa-shopping-cart text-xs"></i> Cari Part & Harga
+                                <i class="fas fa-search text-xs"></i> Cari Part
                             </button>
+                            
+                            <div class="flex gap-2">
+                                <a href="${m.online ? m.online : '#'}" target="_blank" 
+                                    class="w-1/2 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 text-xs font-semibold py-2 rounded-lg transition-colors flex items-center justify-center gap-1">
+                                    <i class="fas fa-globe"></i> Online
+                                </a>
+                                <a href="${m.pdf ? m.pdf : '#'}" target="_blank" 
+                                    class="w-1/2 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 text-xs font-semibold py-2 rounded-lg transition-colors flex items-center justify-center gap-1">
+                                    <i class="fas fa-file-pdf"></i> Download
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,6 +150,10 @@
         }
 
         function redirectToHonda(kode) {
+            if(!kode || kode === 'null' || kode === '-') {
+                alert('Kode motor tidak tersedia untuk pencarian.');
+                return;
+            }
             const url = `https://www.hondacengkareng.com/search-results/?q=${kode.toLowerCase()}&tab=products`;
             window.open(url, '_blank');
         }

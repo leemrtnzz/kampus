@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Motor Honda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding: 20px; }
+        .motor-card { transition: transform 0.2s; cursor: pointer; }
+        .motor-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .badge-kode { background-color: #e31837; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">Pencarian Part Motor Honda</h2>
+    
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari nama motor atau kode (contoh: K81, Vario)...">
+        </div>
+        <div class="col-md-4">
+            <select id="yearFilter" class="form-select">
+                <option value="">Semua Tahun</option>
+                <option value="Sekarang">Produksi Terbaru (Sekarang)</option>
+                <option value="2024">2024</option>
+                <option value="2020">2020 - 2023</option>
+                <option value="2010">2010 - 2019</option>
+                <option value="2000">Dibawah 2010</option>
+            </select>
+        </div>
+        <div class="col-md-2 text-center">
+            <span id="resultCount" class="badge bg-secondary p-2 mt-2">0 Motor</span>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="motorContainer">
+        </div>
+</div>
+
+<script>
+// Data JSON yang sudah diproses sebelumnya
+const motorData = [
+    { "nama": "ADV 150", "kode": "ADV 150", "tahun": "2019 - 2022", "id": 973 },
+    { "nama": "ADV 160", "kode": "ADV 160", "tahun": "2022 - Sekarang", "id": 848 },
+    { "nama": "BeAT dan BeAT Street", "kode": "K1A", "tahun": "2020 - 2024", "id": 1038 },
+    { "nama": "BeAT dan BeAT Street", "kode": "K1AL", "tahun": "2024 - Sekarang", "id": 831 },
+    { "nama": "BeAT Sporty eSP", "kode": "K81", "tahun": "2016 - 2020", "id": 874 },
+    { "nama": "CBR 150R", "kode": "K45R", "tahun": "2021 - Sekarang", "id": 1277 },
+    { "nama": "PCX 160", "kode": "K1Z", "tahun": "2021 - 2024", "id": 1054 },
+    { "nama": "Vario 125", "kode": "K2VB", "tahun": "2025 - Sekarang", "id": 8 },
+    { "nama": "Scoopy", "kode": "K2F", "tahun": "2020 - 2024", "id": 1231 },
+    { "nama": "Sonic 150R", "kode": "K56", "tahun": "2015 - Sekarang", "id": 1180 }
+    // ... Tambahkan sisa data JSON Anda di sini
+];
+
+const container = document.getElementById('motorContainer');
+const searchInput = document.getElementById('searchInput');
+const yearFilter = document.getElementById('yearFilter');
+const resultCount = document.getElementById('resultCount');
+
+function displayMotor(data) {
+    container.innerHTML = '';
+    resultCount.innerText = `${data.length} Motor`;
+    
+    data.forEach(item => {
+        const card = `
+            <div class="col">
+                <div class="card h-100 motor-card" onclick="redirectToHonda('${item.kode}')">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.nama}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Tahun: ${item.tahun || 'N/A'}</h6>
+                        <span class="badge badge-kode">Kode: ${item.kode}</span>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <small class="text-primary">Klik untuk cari sparepart &rarr;</small>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.innerHTML += card;
+    });
+}
+
+// Fungsi Redirect sesuai permintaan
+function redirectToHonda(kode) {
+    const url = `https://www.hondacengkareng.com/search-results/?q=${kode.toLowerCase()}&tab=products&page=1`;
+    window.open(url, '_blank');
+}
+
+// Fungsi Filter & Search
+function filterData() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedYear = yearFilter.value;
+
+    const filtered = motorData.filter(item => {
+        const matchSearch = item.nama.toLowerCase().includes(searchTerm) || 
+                            item.kode.toLowerCase().includes(searchTerm);
+        
+        let matchYear = true;
+        if (selectedYear === "Sekarang") matchYear = item.tahun?.includes("Sekarang");
+        else if (selectedYear === "2024") matchYear = item.tahun?.includes("2024");
+        else if (selectedYear === "2020") matchYear = item.tahun?.match(/202[0-3]/);
+        else if (selectedYear === "2010") matchYear = item.tahun?.match(/201[0-9]/);
+        else if (selectedYear === "2000") matchYear = item.tahun?.match(/19[0-9]{2}|200[0-9]/);
+
+        return matchSearch && matchYear;
+    });
+
+    displayMotor(filtered);
+}
+
+searchInput.addEventListener('input', filterData);
+yearFilter.addEventListener('change', filterData);
+
+// Load awal
+displayMotor(motorData);
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

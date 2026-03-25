@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Kode DTC Spesifik Honda (PGM-FI)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1E1E2E;
+            color: #CDD6F4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #89B4FA;
+            border-bottom: 2px solid #313244;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #BAC2DE;
+            text-align: center;
+            max-width: 800px;
+            margin: 15px auto 30px auto;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background-color: #181825;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #313244;
+        }
+
+        thead tr {
+            background-color: #89B4FA;
+            color: #11111B;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #1E1E2E;
+        }
+
+        tbody tr:hover {
+            background-color: #45475A;
+            color: #F5E0DC;
+        }
+
+        td:first-child {
+            font-weight: 500;
+            color: #F38BA8; /* Warna merah muda untuk kode manufaktur */
+        }
+
+        td:nth-child(2) {
+            font-weight: 500;
+            color: #A6E3A1; /* Warna hijau untuk kode OBD2 */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Daftar Kode DTC Spesifik Honda (PGM-FI)</h1>
+    <p>Berikut adalah tabel kode error diagnostik (DTC) yang spesifik untuk sistem PGM-FI pada sepeda motor Honda. Kode Manufaktur merujuk pada kode internal (seringkali ditampilkan sebagai kedipan MIL).</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Kode Error Manufaktur</th>
+                    <th>Kode Error OBD 2</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1-1</td><td>P0107</td><td>Sensor MAP - Tegangan sirkuit terlalu rendah.</td></tr>
+                <tr><td>1-2</td><td>P0108</td><td>Sensor MAP - Tegangan sirkuit terlalu tinggi.</td></tr>
+                <tr><td>2-1</td><td>P0106</td><td>Sensor MAP - Masalah pada performa/jangkauan sirkuit.</td></tr>
+                <tr><td>6-1</td><td>-</td><td>Sensor Barometrik - Tegangan sirkuit terlalu rendah.</td></tr>
+                <tr><td>6-2</td><td>-</td><td>Sensor Barometrik - Tegangan sirkuit terlalu tinggi.</td></tr>
+                <tr><td>7-1</td><td>P0117</td><td>Sensor ECT (Suhu Mesin) - Tegangan sirkuit terlalu rendah.</td></tr>
+                <tr><td>7-2</td><td>P0118</td><td>Sensor ECT (Suhu Mesin) - Tegangan sirkuit terlalu tinggi.</td></tr>
+                <tr><td>8-1</td><td>P0122</td><td>Sensor TP (Posisi Gas) - Tegangan sirkuit terlalu rendah.</td></tr>
+                <tr><td>8-2</td><td>P0123</td><td>Sensor TP (Posisi Gas) - Tegangan sirkuit terlalu tinggi.</td></tr>
+                <tr><td>9-1</td><td>P0112</td><td>Sensor IAT (Suhu Udara Masuk) - Tegangan sirkuit terlalu rendah.</td></tr>
+                <tr><td>9-2</td><td>P0113</td><td>Sensor IAT (Suhu Udara Masuk) - Tegangan sirkuit terlalu tinggi.</td></tr>
+                <tr><td>11-1</td><td>P0500</td><td>Sensor VS (Kecepatan Kendaraan) - Tidak ada sinyal.</td></tr>
+                <tr><td>12-1</td><td>P0201</td><td>Kerusakan sirkuit injektor primer No. 1.</td></tr>
+                <tr><td>13-1</td><td>P0202</td><td>Kerusakan sirkuit injektor primer No. 2.</td></tr>
+                <tr><td>14-1</td><td>P0203</td><td>Kerusakan sirkuit injektor primer No. 3.</td></tr>
+                <tr><td>15-1</td><td>P0204</td><td>Kerusakan sirkuit injektor primer No. 4.</td></tr>
+                <tr><td>18-1</td><td>P0340</td><td>Sensor CMP (Posisi Noken As) - Tidak ada sinyal.</td></tr>
+                <tr><td>19-1</td><td>P0335</td><td>Sensor CKP (Posisi Kruk As) - Tidak ada sinyal.</td></tr>
+                <tr><td>21-1</td><td>P0131</td><td>Sensor O₂ (Oksigen) bank 1 - Tegangan rendah.</td></tr>
+                <tr><td>21-2</td><td>P0132</td><td>Sensor O₂ (Oksigen) bank 1 - Tegangan tinggi.</td></tr>
+                <tr><td>23-1</td><td>P0030</td><td>Kerusakan pemanas (heater) Sensor O₂ bank 1.</td></tr>
+                <tr><td>25-2 / 25-3</td><td>P0325</td><td>Kerusakan sirkuit Sensor Knock (Ketukan).</td></tr>
+                <tr><td>29-1</td><td>P0505</td><td>Kerusakan sirkuit IACV (Kontrol Udara Langsam).</td></tr>
+                <tr><td>33-2</td><td>P0606</td><td>Kerusakan memori EEPROM pada ECU.</td></tr>
+                <tr><td>54-1</td><td>-</td><td>Sensor Sudut Kemiringan (Bank Angle Sensor) - Tegangan sirkuit rendah.</td></tr>
+                <tr><td>54-2</td><td>-</td><td>Sensor Sudut Kemiringan (Bank Angle Sensor) - Tegangan sirkuit tinggi.</td></tr>
+                <tr><td>77-1</td><td>-</td><td>Kerusakan per pengembali (return spring) pada sistem TBW (Throttle-by-Wire).</td></tr>
+                <tr><td>78-1</td><td>-</td><td>Kerusakan motor pada sistem TBW (Throttle-by-Wire).</td></tr>
+                <tr><td>86-1</td><td>U0155</td><td>Kerusakan komunikasi serial (misal: ECU ke spidometer).</td></tr>
+                <tr><td>91-1</td><td>P0351</td><td>Kerusakan sirkuit koil pengapian No. 1.</td></tr>
+                <tr><td>99-1</td><td>-</td><td>Kerusakan sirkuit IMU (Inertial Measurement Unit).</td></tr>
+                <tr><td>103-1/2/3/4</td><td>U0100</td><td>Kerusakan komunikasi CAN Bus.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

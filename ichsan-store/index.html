@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ichsan Store - Price List</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-100 text-slate-800 antialiased min-h-screen flex items-center justify-center p-4 md:p-8"
+  >
+    <div class="w-full max-w-4xl">
+      <div class="mb-8 text-center">
+        <h1
+          class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight"
+        >
+          Ichsan Store
+        </h1>
+        <p class="text-slate-500 mt-2 text-sm md:text-base">
+          Daftar Harga Layanan & Produk Digital
+        </p>
+      </div>
+
+      <div class="mb-6 relative">
+        <div
+          class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+        >
+          <svg
+            class="w-5 h-5 text-slate-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari nama produk atau variant..."
+          class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent transition-all shadow-sm"
+        />
+      </div>
+
+      <div
+        class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-200"
+      >
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr
+                class="bg-slate-900 text-white text-xs md:text-sm uppercase tracking-wider"
+              >
+                <th class="px-6 py-5 font-semibold rounded-tl-2xl">Produk</th>
+                <th class="px-6 py-5 font-semibold">Variant</th>
+                <th class="px-6 py-5 font-semibold text-right rounded-tr-2xl">
+                  Harga
+                </th>
+              </tr>
+            </thead>
+
+            <tbody
+              id="product-table-body"
+              class="divide-y divide-slate-100"
+            ></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 Ichsan Store. Harga dapat berubah sewaktu-waktu.</p>
+      </div>
+    </div>
+
+    <script>
+      // 1. Data JSON
+      const dataProduk = [
+        { nama: "Alight Motion", variant: "1 Tahun", harga: 5000 },
+        { nama: "Apple Music", variant: "1 Bulan", harga: 9000 },
+        { nama: "Bstation", variant: "1 Bulan", harga: 7000 },
+        { nama: "Canva", variant: "1 Bulan (invite)", harga: 3000 },
+        { nama: "Canva", variant: "1 Tahun EDU", harga: 10000 },
+        { nama: "Canva", variant: "6 Bulan EDU", harga: 7000 },
+        { nama: "Canva", variant: "Owner Premium", harga: 6000 },
+        { nama: "Canva", variant: "Owner Premium (lifetime)", harga: 30000 },
+        { nama: "Canva", variant: "Lifetime garansi 1 tahun", harga: 22000 },
+        { nama: "Canva", variant: "Lifetime garansi 6 bulan", harga: 18000 },
+        { nama: "Capcut", variant: "35 Hari", harga: 8000 },
+        { nama: "ChatGPT", variant: "1 Bulan (owner)", harga: 18000 },
+        { nama: "ChatGPT", variant: "Private Plus 1 Bulan", harga: 12000 },
+        { nama: "Disney", variant: "1 Bulan Sharing 6 User", harga: 25000 },
+        { nama: "Grok AI", variant: "1 Bulan", harga: 12000 },
+        { nama: "HBO Max Premium", variant: "Sharing Ultimate", harga: 14000 },
+        {
+          nama: "Lisensi Windows",
+          variant: "OFFICE 2016 PROFESSIONAL PLUS",
+          harga: 28000,
+        },
+        {
+          nama: "Lisensi Windows",
+          variant: "OFFICE 2019 PROFESSIONAL PLUS",
+          harga: 28000,
+        },
+        {
+          nama: "Lisensi Windows",
+          variant: "OFFICE 2021 PROFESSIONAL PLUS",
+          harga: 28000,
+        },
+        { nama: "Lisensi Windows", variant: "OFFICE 365 RANDOM", harga: 15000 },
+        { nama: "Lisensi Windows", variant: "WINDOWS 10 PRO", harga: 26000 },
+        { nama: "Lisensi Windows", variant: "WINDOWS 11 PRO", harga: 26000 },
+        { nama: "IQIYI", variant: "1 Tahun", harga: 11000 },
+        { nama: "IQIYI", variant: "3 Bulan", harga: 9000 },
+        { nama: "IQIYI", variant: "1 Bulan", harga: 6000 },
+        { nama: "Netflix", variant: "1U1P", harga: 35000 },
+        { nama: "Netflix", variant: "2U1P", harga: 18000 },
+        { nama: "Netflix", variant: "1 Hari", harga: 5000 },
+        { nama: "Netflix", variant: "3 Hari", harga: 8000 },
+        { nama: "Netflix", variant: "7 Hari", harga: 14000 },
+        { nama: "Netflix", variant: "Private", harga: 150000 },
+        { nama: "Picsart", variant: "Famhead 1 Bulan", harga: 9000 },
+        { nama: "Prime Video", variant: "1 Bulan Private", harga: 10000 },
+        { nama: "Scribd", variant: "1 Bulan", harga: 7000 },
+        { nama: "Spotify", variant: "1 Bulan Individual", harga: 14000 },
+        { nama: "Vidio Plat", variant: "ALL DEVICE 1PCS", harga: 34000 },
+        { nama: "Vidio Plat", variant: "MOBILE ONLY 1PCS", harga: 24000 },
+        { nama: "Viu Premium", variant: "1 Tahun", harga: 3000 },
+        { nama: "Viu Premium", variant: "Life Time", harga: 7000 },
+        { nama: "VPN", variant: "EXPRESS 1 BULAN", harga: 7000 },
+        { nama: "VPN", variant: "HMA 1 BULAN", harga: 7000 },
+        { nama: "VPN", variant: "SURFSHARK 3 BULAN", harga: 20000 },
+        { nama: "Wetv", variant: "Private", harga: 25000 },
+        { nama: "Wetv", variant: "Sharing 1 Bulan", harga: 7000 },
+        { nama: "Youtube", variant: "3 BULAN", harga: 22000 },
+        { nama: "Youtube", variant: "Famhead", harga: 12000 },
+        { nama: "Youtube", variant: "Individual 1 Bulan", harga: 14000 },
+        { nama: "Zoom", variant: "14 Hari", harga: 4000 },
+      ];
+
+      // 2. Format Rupiah
+      const formatRupiah = (angka) => {
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(angka);
+      };
+
+      // 3. Tangkap Elemen DOM
+      const tableBody = document.getElementById("product-table-body");
+      const searchInput = document.getElementById("searchInput");
+
+      // 4. Fungsi untuk me-render tabel (Bisa dipanggil ulang)
+      const renderTable = (data) => {
+        let htmlContent = "";
+
+        // Jika data kosong setelah difilter
+        if (data.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="3" class="px-6 py-8 text-center text-slate-500">
+                Produk tidak ditemukan.
+              </td>
+            </tr>
+          `;
+          return; // Hentikan eksekusi fungsi
+        }
+
+        // Looping data
+        data.forEach((produk) => {
+          const inisial = produk.nama.charAt(0).toUpperCase();
+
+          htmlContent += `
+            <tr class="odd:bg-white even:bg-slate-50 hover:bg-slate-100 transition-colors duration-200 group">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                    ${inisial}
+                  </div>
+                  <span class="font-semibold text-slate-900 text-base">${produk.nama}</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-md font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                  ${produk.variant}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right">
+                <span class="font-bold text-emerald-600 text-base md:text-lg">${formatRupiah(produk.harga)}</span>
+              </td>
+            </tr>
+          `;
+        });
+
+        tableBody.innerHTML = htmlContent;
+      };
+
+      // 5. Render tabel pertama kali saat halaman dimuat
+      renderTable(dataProduk);
+
+      // 6. Event Listener untuk fitur Search
+      searchInput.addEventListener("input", (e) => {
+        // Ambil teks yang diketik lalu ubah jadi huruf kecil semua agar tidak case-sensitive
+        const kataKunci = e.target.value.toLowerCase();
+
+        // Filter data array
+        const dataDisaring = dataProduk.filter((produk) => {
+          return (
+            produk.nama.toLowerCase().includes(kataKunci) ||
+            produk.variant.toLowerCase().includes(kataKunci)
+          );
+        });
+
+        // Render ulang tabel dengan data yang sudah disaring
+        renderTable(dataDisaring);
+      });
+    </script>
+  </body>
+</html>

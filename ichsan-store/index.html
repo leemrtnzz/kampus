@@ -18,7 +18,7 @@
   <body
     class="bg-slate-100 text-slate-800 antialiased min-h-screen flex items-center justify-center p-4 md:p-8"
   >
-    <div class="w-full max-w-4xl">
+    <div class="w-full max-w-5xl">
       <div class="mb-8 text-center">
         <h1
           class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight"
@@ -68,8 +68,12 @@
               >
                 <th class="px-6 py-5 font-semibold rounded-tl-2xl">Produk</th>
                 <th class="px-6 py-5 font-semibold">Variant</th>
+                <th class="px-6 py-5 font-semibold text-right">Harga Modal</th>
+                <th class="px-6 py-5 font-semibold text-right">
+                  Harga Jual (rekomendasi)
+                </th>
                 <th class="px-6 py-5 font-semibold text-right rounded-tr-2xl">
-                  Harga
+                  Keuntungan (Laba)
                 </th>
               </tr>
             </thead>
@@ -88,68 +92,176 @@
     </div>
 
     <script>
-      // 1. Data JSON
+      // 1. Data JSON dengan tambahan property "markup" (harga jual)
       const dataProduk = [
-        { nama: "Alight Motion", variant: "1 Tahun", harga: 5000 },
-        { nama: "Apple Music", variant: "1 Bulan", harga: 9000 },
-        { nama: "Bstation", variant: "1 Bulan", harga: 7000 },
-        { nama: "Canva", variant: "1 Bulan (invite)", harga: 3000 },
-        { nama: "Canva", variant: "1 Tahun EDU", harga: 10000 },
-        { nama: "Canva", variant: "6 Bulan EDU", harga: 7000 },
-        { nama: "Canva", variant: "Owner Premium", harga: 6000 },
-        { nama: "Canva", variant: "Owner Premium (lifetime)", harga: 30000 },
-        { nama: "Canva", variant: "Lifetime garansi 1 tahun", harga: 22000 },
-        { nama: "Canva", variant: "Lifetime garansi 6 bulan", harga: 18000 },
-        { nama: "Capcut", variant: "35 Hari", harga: 8000 },
-        { nama: "ChatGPT", variant: "1 Bulan (owner)", harga: 18000 },
-        { nama: "ChatGPT", variant: "Private Plus 1 Bulan", harga: 12000 },
-        { nama: "Disney", variant: "1 Bulan Sharing 6 User", harga: 25000 },
-        { nama: "Grok AI", variant: "1 Bulan", harga: 12000 },
-        { nama: "HBO Max Premium", variant: "Sharing Ultimate", harga: 14000 },
         {
-          nama: "Lisensi Windows",
-          variant: "OFFICE 2016 PROFESSIONAL PLUS",
-          harga: 28000,
+          nama: "Alight Motion",
+          variant: "1 Tahun",
+          harga: 5000,
+          markup: 10000,
+        },
+        { nama: "Apple Music", variant: "1 Bulan", harga: 9000, markup: 15000 },
+        { nama: "Bstation", variant: "1 Bulan", harga: 7000, markup: 12000 },
+        {
+          nama: "Canva",
+          variant: "1 Bulan (invite)",
+          harga: 3000,
+          markup: 8000,
+        },
+        { nama: "Canva", variant: "1 Tahun EDU", harga: 10000, markup: 20000 },
+        { nama: "Canva", variant: "6 Bulan EDU", harga: 7000, markup: 15000 },
+        { nama: "Canva", variant: "Owner Premium", harga: 6000, markup: 12000 },
+        {
+          nama: "Canva",
+          variant: "Owner Premium (lifetime)",
+          harga: 30000,
+          markup: 45000,
+        },
+        {
+          nama: "Canva",
+          variant: "Lifetime garansi 1 tahun",
+          harga: 22000,
+          markup: 35000,
+        },
+        {
+          nama: "Canva",
+          variant: "Lifetime garansi 6 bulan",
+          harga: 18000,
+          markup: 28000,
+        },
+        { nama: "Capcut", variant: "35 Hari", harga: 8000, markup: 15000 },
+        {
+          nama: "ChatGPT",
+          variant: "1 Bulan (owner)",
+          harga: 18000,
+          markup: 25000,
+        },
+        {
+          nama: "ChatGPT",
+          variant: "Private Plus 1 Bulan",
+          harga: 12000,
+          markup: 20000,
+        },
+        {
+          nama: "Disney",
+          variant: "1 Bulan Sharing 6 User",
+          harga: 25000,
+          markup: 35000,
+        },
+        { nama: "Grok AI", variant: "1 Bulan", harga: 12000, markup: 20000 },
+        {
+          nama: "HBO Max Premium",
+          variant: "Sharing Ultimate",
+          harga: 14000,
+          markup: 20000,
         },
         {
           nama: "Lisensi Windows",
-          variant: "OFFICE 2019 PROFESSIONAL PLUS",
+          variant: "OFFICE 2016 PRO PLUS",
           harga: 28000,
+          markup: 45000,
         },
         {
           nama: "Lisensi Windows",
-          variant: "OFFICE 2021 PROFESSIONAL PLUS",
+          variant: "OFFICE 2019 PRO PLUS",
           harga: 28000,
+          markup: 45000,
         },
-        { nama: "Lisensi Windows", variant: "OFFICE 365 RANDOM", harga: 15000 },
-        { nama: "Lisensi Windows", variant: "WINDOWS 10 PRO", harga: 26000 },
-        { nama: "Lisensi Windows", variant: "WINDOWS 11 PRO", harga: 26000 },
-        { nama: "IQIYI", variant: "1 Tahun", harga: 11000 },
-        { nama: "IQIYI", variant: "3 Bulan", harga: 9000 },
-        { nama: "IQIYI", variant: "1 Bulan", harga: 6000 },
-        { nama: "Netflix", variant: "1U1P", harga: 35000 },
-        { nama: "Netflix", variant: "2U1P", harga: 18000 },
-        { nama: "Netflix", variant: "1 Hari", harga: 5000 },
-        { nama: "Netflix", variant: "3 Hari", harga: 8000 },
-        { nama: "Netflix", variant: "7 Hari", harga: 14000 },
-        { nama: "Netflix", variant: "Private", harga: 150000 },
-        { nama: "Picsart", variant: "Famhead 1 Bulan", harga: 9000 },
-        { nama: "Prime Video", variant: "1 Bulan Private", harga: 10000 },
-        { nama: "Scribd", variant: "1 Bulan", harga: 7000 },
-        { nama: "Spotify", variant: "1 Bulan Individual", harga: 14000 },
-        { nama: "Vidio Plat", variant: "ALL DEVICE 1PCS", harga: 34000 },
-        { nama: "Vidio Plat", variant: "MOBILE ONLY 1PCS", harga: 24000 },
-        { nama: "Viu Premium", variant: "1 Tahun", harga: 3000 },
-        { nama: "Viu Premium", variant: "Life Time", harga: 7000 },
-        { nama: "VPN", variant: "EXPRESS 1 BULAN", harga: 7000 },
-        { nama: "VPN", variant: "HMA 1 BULAN", harga: 7000 },
-        { nama: "VPN", variant: "SURFSHARK 3 BULAN", harga: 20000 },
-        { nama: "Wetv", variant: "Private", harga: 25000 },
-        { nama: "Wetv", variant: "Sharing 1 Bulan", harga: 7000 },
-        { nama: "Youtube", variant: "3 BULAN", harga: 22000 },
-        { nama: "Youtube", variant: "Famhead", harga: 12000 },
-        { nama: "Youtube", variant: "Individual 1 Bulan", harga: 14000 },
-        { nama: "Zoom", variant: "14 Hari", harga: 4000 },
+        {
+          nama: "Lisensi Windows",
+          variant: "OFFICE 2021 PRO PLUS",
+          harga: 28000,
+          markup: 45000,
+        },
+        {
+          nama: "Lisensi Windows",
+          variant: "OFFICE 365 RANDOM",
+          harga: 15000,
+          markup: 25000,
+        },
+        {
+          nama: "Lisensi Windows",
+          variant: "WINDOWS 10 PRO",
+          harga: 26000,
+          markup: 40000,
+        },
+        {
+          nama: "Lisensi Windows",
+          variant: "WINDOWS 11 PRO",
+          harga: 26000,
+          markup: 40000,
+        },
+        { nama: "IQIYI", variant: "1 Tahun", harga: 11000, markup: 20000 },
+        { nama: "IQIYI", variant: "3 Bulan", harga: 9000, markup: 15000 },
+        { nama: "IQIYI", variant: "1 Bulan", harga: 6000, markup: 12000 },
+        { nama: "Netflix", variant: "1U1P", harga: 35000, markup: 45000 },
+        { nama: "Netflix", variant: "2U1P", harga: 18000, markup: 25000 },
+        { nama: "Netflix", variant: "1 Hari", harga: 5000, markup: 10000 },
+        { nama: "Netflix", variant: "3 Hari", harga: 8000, markup: 15000 },
+        { nama: "Netflix", variant: "7 Hari", harga: 14000, markup: 20000 },
+        { nama: "Netflix", variant: "Private", harga: 150000, markup: 175000 },
+        {
+          nama: "Picsart",
+          variant: "Famhead 1 Bulan",
+          harga: 9000,
+          markup: 15000,
+        },
+        {
+          nama: "Prime Video",
+          variant: "1 Bulan Private",
+          harga: 10000,
+          markup: 18000,
+        },
+        { nama: "Scribd", variant: "1 Bulan", harga: 7000, markup: 12000 },
+        {
+          nama: "Spotify",
+          variant: "1 Bulan Individual",
+          harga: 14000,
+          markup: 20000,
+        },
+        {
+          nama: "Vidio Plat",
+          variant: "ALL DEVICE 1PCS",
+          harga: 34000,
+          markup: 45000,
+        },
+        {
+          nama: "Vidio Plat",
+          variant: "MOBILE ONLY 1PCS",
+          harga: 24000,
+          markup: 35000,
+        },
+        { nama: "Viu Premium", variant: "1 Tahun", harga: 3000, markup: 10000 },
+        {
+          nama: "Viu Premium",
+          variant: "Life Time",
+          harga: 7000,
+          markup: 15000,
+        },
+        { nama: "VPN", variant: "EXPRESS 1 BULAN", harga: 7000, markup: 15000 },
+        { nama: "VPN", variant: "HMA 1 BULAN", harga: 7000, markup: 15000 },
+        {
+          nama: "VPN",
+          variant: "SURFSHARK 3 BULAN",
+          harga: 20000,
+          markup: 35000,
+        },
+        { nama: "Wetv", variant: "Private", harga: 25000, markup: 35000 },
+        {
+          nama: "Wetv",
+          variant: "Sharing 1 Bulan",
+          harga: 7000,
+          markup: 15000,
+        },
+        { nama: "Youtube", variant: "3 BULAN", harga: 22000, markup: 35000 },
+        { nama: "Youtube", variant: "Famhead", harga: 12000, markup: 20000 },
+        {
+          nama: "Youtube",
+          variant: "Individual 1 Bulan",
+          harga: 14000,
+          markup: 22000,
+        },
+        { nama: "Zoom", variant: "14 Hari", harga: 4000, markup: 10000 },
       ];
 
       // 2. Format Rupiah
@@ -165,25 +277,25 @@
       const tableBody = document.getElementById("product-table-body");
       const searchInput = document.getElementById("searchInput");
 
-      // 4. Fungsi untuk me-render tabel (Bisa dipanggil ulang)
+      // 4. Fungsi untuk me-render tabel
       const renderTable = (data) => {
         let htmlContent = "";
 
-        // Jika data kosong setelah difilter
         if (data.length === 0) {
           tableBody.innerHTML = `
             <tr>
-              <td colspan="3" class="px-6 py-8 text-center text-slate-500">
+              <td colspan="5" class="px-6 py-8 text-center text-slate-500">
                 Produk tidak ditemukan.
               </td>
             </tr>
           `;
-          return; // Hentikan eksekusi fungsi
+          return;
         }
 
-        // Looping data
         data.forEach((produk) => {
           const inisial = produk.nama.charAt(0).toUpperCase();
+          // Hitung Laba secara dinamis
+          const laba = produk.markup - produk.harga;
 
           htmlContent += `
             <tr class="odd:bg-white even:bg-slate-50 hover:bg-slate-100 transition-colors duration-200 group">
@@ -201,7 +313,13 @@
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right">
-                <span class="font-bold text-emerald-600 text-base md:text-lg">${formatRupiah(produk.harga)}</span>
+                <span class="text-slate-500 text-base">${formatRupiah(produk.harga)}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right">
+                <span class="font-bold text-slate-800 text-base">${formatRupiah(produk.markup)}</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right">
+                <span class="font-bold text-emerald-600 text-base md:text-lg">${formatRupiah(laba)}</span>
               </td>
             </tr>
           `;
@@ -210,23 +328,18 @@
         tableBody.innerHTML = htmlContent;
       };
 
-      // 5. Render tabel pertama kali saat halaman dimuat
+      // 5. Render pertama kali
       renderTable(dataProduk);
 
-      // 6. Event Listener untuk fitur Search
+      // 6. Fitur Search
       searchInput.addEventListener("input", (e) => {
-        // Ambil teks yang diketik lalu ubah jadi huruf kecil semua agar tidak case-sensitive
         const kataKunci = e.target.value.toLowerCase();
-
-        // Filter data array
         const dataDisaring = dataProduk.filter((produk) => {
           return (
             produk.nama.toLowerCase().includes(kataKunci) ||
             produk.variant.toLowerCase().includes(kataKunci)
           );
         });
-
-        // Render ulang tabel dengan data yang sudah disaring
         renderTable(dataDisaring);
       });
     </script>

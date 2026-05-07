@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Zakat Maal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 text-center">Kalkulator Zakat</h2>
+        
+        <div class="space-y-4">
+            <!-- Input Total Uang -->
+            <div>
+                <label class="block text-sm font-medium text-slate-600 mb-1">Total Uang (Simpanan)</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-2 text-slate-400">Rp</span>
+                    <input type="number" id="totalUang" placeholder="0" 
+                        class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                </div>
+            </div>
+
+            <!-- Rincian Perhitungan -->
+            <div class="bg-emerald-50 p-4 rounded-lg space-y-3">
+                <div class="flex justify-between text-sm">
+                    <span class="text-emerald-700">Tahap 1 (1/10):</span>
+                    <span id="seperSepuluh" class="font-semibold text-emerald-900">Rp 0</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-emerald-700">Tahap 2 (1/4 dari 1/10):</span>
+                    <span id="seperEmpat" class="font-semibold text-emerald-900">Rp 0</span>
+                </div>
+                
+                <hr class="border-emerald-200">
+
+                <div class="pt-2">
+                    <p class="text-xs text-emerald-600 uppercase font-bold tracking-wider">Total Zakat yang Harus Dibayar</p>
+                    <p id="hasilAkhir" class="text-3xl font-extrabold text-emerald-600 mt-1">Rp 0</p>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-slate-400 text-center italic">
+                *Rumus: (Total / 10) / 4 = 2.5% dari total harta.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const inputUang = document.getElementById('totalUang');
+        const displaySeperSepuluh = document.getElementById('seperSepuluh');
+        const displaySeperEmpat = document.getElementById('seperEmpat');
+        const displayHasilAkhir = document.getElementById('hasilAkhir');
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+        }
+
+        inputUang.addEventListener('input', (e) => {
+            const total = parseFloat(e.target.value) || 0;
+
+            // Logika sesuai permintaan:
+            // 1. Hitung 1/10
+            const step1 = total / 10;
+            
+            // 2. Hitung 1/4 dari hasil 1/10
+            const step2 = step1 / 4;
+
+            // Tampilkan hasil
+            displaySeperSepuluh.innerText = formatRupiah(step1);
+            displaySeperEmpat.innerText = formatRupiah(step2);
+            displayHasilAkhir.innerText = formatRupiah(step2);
+        });
+    </script>
+
+</body>
+</html>

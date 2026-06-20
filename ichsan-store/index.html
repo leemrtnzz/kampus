@@ -243,7 +243,7 @@
         const plansHtml = app.plans
         .map((p) => {
           // Bikin pesan WA dinamis & url-safe
-          const waMessage = encodeURIComponent(`halo kak aku mau ${app.name} ${p.label}`);
+          const waMessage = encodeURIComponent(`halo kak aku mau ${app.name} ${p.label}: ${p.price / 1000}k`);
           
           return `
             <a href="https://wa.me/6283841365567?text=${waMessage}" target="_blank" rel="nofollow" class="flex justify-between items-center bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/5 hover:bg-sky-500/20 hover:border-sky-500/50 transition-all gap-2 cursor-pointer group">
